@@ -5,7 +5,30 @@
 ![iOS](https://img.shields.io/badge/iOS-15.0+-blue.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.7+-orange.svg)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-3.0+-green.svg)
+![React Native](https://img.shields.io/badge/React_Native-0.72+-61DAFB.svg)
+![Expo](https://img.shields.io/badge/Expo-49.0+-000020.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+## 🎉 NEW: React Native/Expo Version Available!
+
+**Want to run this in VSCode with instant mobile preview?** Check out the **[mobile-app/](mobile-app/)** folder!
+
+- ✅ Run from VSCode
+- ✅ Instant preview on your phone (scan QR code!)
+- ✅ Web preview in browser
+- ✅ Updated UI matching the latest design (green theme!)
+- ✅ Fully functional lessons and quizzes
+- ✅ Deploy to staging with one command
+
+**Quick Start:**
+```bash
+cd mobile-app
+npm install
+npm start
+# Scan QR code with Expo Go app!
+```
+
+See **[mobile-app/README.md](mobile-app/README.md)** for full instructions!
 
 ## ✨ Highlights
 
