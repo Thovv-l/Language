@@ -7,26 +7,17 @@ struct OnboardingView: View {
     @State private var selectedLearningLanguage: SupportedLanguage?
 
     var body: some View {
-        ZStack {
-            // Gradient background inspired by the design
-            LinearGradient(
-                colors: [Color.blue.opacity(0.3), Color.cyan.opacity(0.2)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
-            VStack(spacing: 30) {
-                if currentStep == 0 {
-                    welcomeScreen
-                } else if currentStep == 1 {
-                    nativeLanguageSelection
-                } else if currentStep == 2 {
-                    learningLanguageSelection
-                }
+        VStack(spacing: 30) {
+            if currentStep == 0 {
+                welcomeScreen
+            } else if currentStep == 1 {
+                nativeLanguageSelection
+            } else if currentStep == 2 {
+                learningLanguageSelection
             }
-            .padding()
         }
+        .padding()
+        .background(Color.white)
     }
 
     var welcomeScreen: some View {
@@ -54,10 +45,16 @@ struct OnboardingView: View {
             }) {
                 Text("Get Started")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.yellow)
+                    .background(
+                        LinearGradient(
+                            colors: [Color(red: 34/255, green: 197/255, blue: 94/255), Color(red: 22/255, green: 163/255, blue: 74/255)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .cornerRadius(16)
             }
             .padding(.horizontal)
@@ -97,10 +94,16 @@ struct OnboardingView: View {
                 }) {
                     Text("Continue")
                         .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.yellow)
+                        .background(
+                            LinearGradient(
+                                colors: [Color(red: 34/255, green: 197/255, blue: 94/255), Color(red: 22/255, green: 163/255, blue: 74/255)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .cornerRadius(16)
                 }
             }
@@ -144,10 +147,16 @@ struct OnboardingView: View {
                 }) {
                     Text("Start Learning")
                         .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.yellow)
+                        .background(
+                            LinearGradient(
+                                colors: [Color(red: 34/255, green: 197/255, blue: 94/255), Color(red: 22/255, green: 163/255, blue: 74/255)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .cornerRadius(16)
                 }
             }
@@ -175,18 +184,19 @@ struct LanguageButton: View {
 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color(red: 34/255, green: 197/255, blue: 94/255))
                         .font(.system(size: 24))
                 }
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(isSelected ? Color.blue.opacity(0.1) : Color.white.opacity(0.8))
+                    .fill(isSelected ? Color(red: 34/255, green: 197/255, blue: 94/255).opacity(0.1) : Color(.systemGray6))
+                    .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                    .stroke(isSelected ? Color(red: 34/255, green: 197/255, blue: 94/255) : Color.clear, lineWidth: 2)
             )
         }
     }
