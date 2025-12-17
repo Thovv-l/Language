@@ -177,6 +177,102 @@ export const translations = {
   }
 };
 
+// Vocabulary questions with opposites and meanings
+const vocabularyQuestions = [
+  {
+    id: 'vocab-1',
+    type: 'multipleChoice',
+    question: 'What is the opposite of "cold"?',
+    correctAnswer: 'Hot',
+    options: ['Hot', 'Warm', 'Cool'],
+    category: 'Vocabulary'
+  },
+  {
+    id: 'vocab-2',
+    type: 'multipleChoice',
+    question: 'What is the opposite of "big"?',
+    correctAnswer: 'Small',
+    options: ['Small', 'Tiny', 'Little'],
+    category: 'Vocabulary'
+  },
+  {
+    id: 'vocab-3',
+    type: 'multipleChoice',
+    question: 'What is the opposite of "fast"?',
+    correctAnswer: 'Slow',
+    options: ['Slow', 'Quick', 'Rapid'],
+    category: 'Vocabulary'
+  },
+  {
+    id: 'vocab-4',
+    type: 'multipleChoice',
+    question: 'What does "happy" mean?',
+    correctAnswer: 'Feeling joy',
+    options: ['Feeling joy', 'Feeling sad', 'Feeling angry'],
+    category: 'Vocabulary'
+  }
+];
+
+// Spelling questions
+const spellingQuestions = [
+  {
+    id: 'spell-1',
+    type: 'multipleChoice',
+    question: 'Which word is spelled correctly?',
+    correctAnswer: 'Receive',
+    options: ['Recieve', 'Receive', 'Recive'],
+    category: 'Spelling'
+  },
+  {
+    id: 'spell-2',
+    type: 'multipleChoice',
+    question: 'Which word is spelled correctly?',
+    correctAnswer: 'Definitely',
+    options: ['Definately', 'Definitely', 'Definetly'],
+    category: 'Spelling'
+  },
+  {
+    id: 'spell-3',
+    type: 'multipleChoice',
+    question: 'Which word is spelled correctly?',
+    correctAnswer: 'Separate',
+    options: ['Seperate', 'Separate', 'Seperete'],
+    category: 'Spelling'
+  },
+  {
+    id: 'spell-4',
+    type: 'multipleChoice',
+    question: 'Which word is spelled correctly?',
+    correctAnswer: 'Necessary',
+    options: ['Necesary', 'Necessary', 'Neccessary'],
+    category: 'Spelling'
+  }
+];
+
+// Listening practice questions
+const listeningQuestions = [
+  {
+    id: 'listen-1',
+    type: 'listening',
+    question: 'Listen Carefully: Master English Audio',
+    correctAnswer: 'A soft whimper',
+    options: ['A bark', 'A soft whimper', 'Rustle'],
+    wordChips: ['Emma', 'was', 'playing', 'in the park', 'when', 'she heard'],
+    audioFile: 'audio1.mp3',
+    category: 'Listening Practice'
+  },
+  {
+    id: 'listen-2',
+    type: 'listening',
+    question: 'Listen Carefully: Understand the Sentence',
+    correctAnswer: 'Going to the store',
+    options: ['Going to the store', 'Coming from work', 'Staying at home'],
+    wordChips: ['I', 'am', 'going', 'to', 'the', 'store'],
+    audioFile: 'audio2.mp3',
+    category: 'Listening Practice'
+  }
+];
+
 // Generate exercises from phrases
 const createExercises = (phrases, nativeCode, learningCode) => {
   const exercises = [];
@@ -203,7 +299,7 @@ const createExercises = (phrases, nativeCode, learningCode) => {
       correctAnswer: translation,
       options: allOptions,
       hint: `Common ${learningCode} phrase`,
-      category: 'vocabulary'
+      category: 'Translation'
     });
 
     // Reverse exercise
@@ -217,11 +313,27 @@ const createExercises = (phrases, nativeCode, learningCode) => {
       correctAnswer: phrase,
       options: reverseOptions,
       hint: null,
-      category: 'vocabulary'
+      category: 'Translation'
     });
   });
 
   return exercises;
+};
+
+// Mix different question types
+const createMixedExercises = (phrases, nativeCode, learningCode) => {
+  const translationExercises = createExercises(phrases, nativeCode, learningCode);
+
+  // Mix in vocabulary, spelling, and listening questions
+  const mixed = [
+    ...translationExercises.slice(0, 3),
+    ...vocabularyQuestions.slice(0, 2),
+    ...spellingQuestions.slice(0, 2),
+    ...listeningQuestions.slice(0, 1),
+    ...translationExercises.slice(3, 5)
+  ];
+
+  return mixed.slice(0, 10); // Return 10 questions per lesson
 };
 
 // Lesson definitions with new design styling
@@ -237,7 +349,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 10,
       lessonNumber: '3 of 5',
       completionPercentage: 80,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['Hello', 'Thank you', 'Please', 'Yes', 'No'],
         nativeCode,
         learningCode
@@ -253,7 +365,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 10,
       lessonNumber: '3 of 5',
       completionPercentage: 80,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['How are you?', 'I\'m fine, thank you', 'What\'s your name?', 'My name is...', 'Nice to meet you'],
         nativeCode,
         learningCode
@@ -269,7 +381,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 10,
       lessonNumber: '3 of 5',
       completionPercentage: 80,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['Good morning', 'Good afternoon', 'Good evening', 'Goodbye'],
         nativeCode,
         learningCode
@@ -285,7 +397,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 10,
       lessonNumber: '1 of 5',
       completionPercentage: 20,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['Where is the bathroom?', 'How much does it cost?', 'I need help', 'Do you speak English?'],
         nativeCode,
         learningCode
@@ -301,7 +413,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 10,
       lessonNumber: '2 of 5',
       completionPercentage: 50,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['I would like a coffee', 'Can I see the menu?', 'The check, please', 'This is delicious', 'Water, please'],
         nativeCode,
         learningCode
@@ -317,7 +429,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 8,
       lessonNumber: '1 of 3',
       completionPercentage: 0,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['Excuse me', 'I\'m sorry', 'I don\'t understand'],
         nativeCode,
         learningCode
@@ -333,7 +445,7 @@ export const getLessons = (nativeCode, learningCode) => {
       totalQuestions: 12,
       lessonNumber: '1 of 4',
       completionPercentage: 0,
-      exercises: createExercises(
+      exercises: createMixedExercises(
         ['I\'m vegetarian', 'You\'re welcome'],
         nativeCode,
         learningCode
