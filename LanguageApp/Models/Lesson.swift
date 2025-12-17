@@ -65,6 +65,10 @@ struct Lesson: Identifiable, Codable {
     let xpReward: Int
     let estimatedMinutes: Int
     var isLocked: Bool
+    let lessonNumber: String // e.g., "3 of 5"
+    let completionPercentage: Int // 0-100
+    let icon: String // Emoji icon
+    let themeColor: String // Color name
 
     init(
         id: UUID = UUID(),
@@ -74,8 +78,12 @@ struct Lesson: Identifiable, Codable {
         description: String,
         exercises: [Exercise],
         xpReward: Int = 10,
-        estimatedMinutes: Int = 5,
-        isLocked: Bool = false
+        estimatedMinutes: Int = 10,
+        isLocked: Bool = false,
+        lessonNumber: String = "1 of 5",
+        completionPercentage: Int = 0,
+        icon: String = "📚",
+        themeColor: String = "green"
     ) {
         self.id = id
         self.title = title
@@ -86,6 +94,10 @@ struct Lesson: Identifiable, Codable {
         self.xpReward = xpReward
         self.estimatedMinutes = estimatedMinutes
         self.isLocked = isLocked
+        self.lessonNumber = lessonNumber
+        self.completionPercentage = completionPercentage
+        self.icon = icon
+        self.themeColor = themeColor
     }
 }
 

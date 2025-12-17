@@ -13,20 +13,27 @@ struct User: Codable {
     var joinDate: Date
     var achievements: [Achievement]
     var lessonProgress: [UUID: LessonProgress] // lessonId -> progress
+    var hearts: Int // Hearts/lives for quiz system
+    var dailyProgress: [String: Bool] // Day of week -> completed
 
     init(
         id: UUID = UUID(),
-        name: String = "Learner",
+        name: String = "Fara",
         languagePair: LanguagePair? = nil,
-        currentStreak: Int = 0,
-        longestStreak: Int = 0,
+        currentStreak: Int = 4,
+        longestStreak: Int = 10,
         totalXP: Int = 0,
         level: Int = 1,
         dailyGoal: Int = 10,
         lastActiveDate: Date? = nil,
         joinDate: Date = Date(),
         achievements: [Achievement] = [],
-        lessonProgress: [UUID: LessonProgress] = [:]
+        lessonProgress: [UUID: LessonProgress] = [:],
+        hearts: Int = 10,
+        dailyProgress: [String: Bool] = [
+            "Mon": true, "Tue": true, "Wed": true, "Thu": true,
+            "Fri": false, "Sat": false, "Sun": false
+        ]
     ) {
         self.id = id
         self.name = name
@@ -40,6 +47,8 @@ struct User: Codable {
         self.joinDate = joinDate
         self.achievements = achievements
         self.lessonProgress = lessonProgress
+        self.hearts = hearts
+        self.dailyProgress = dailyProgress
     }
 
     var xpToNextLevel: Int {
