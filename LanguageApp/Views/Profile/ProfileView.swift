@@ -7,31 +7,23 @@ struct ProfileView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                LinearGradient(
-                    colors: [Color.blue.opacity(0.15), Color.cyan.opacity(0.1)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Profile header
+                    profileHeader
 
-                ScrollView {
-                    VStack(spacing: 24) {
-                        // Profile header
-                        profileHeader
+                    // Stats cards
+                    statsGrid
 
-                        // Stats cards
-                        statsGrid
+                    // Achievements
+                    achievementsSection
 
-                        // Achievements
-                        achievementsSection
-
-                        // Settings
-                        settingsSection
-                    }
-                    .padding()
+                    // Settings
+                    settingsSection
                 }
+                .padding()
             }
+            .background(Color.white)
             .navigationTitle("Profile")
         }
     }
@@ -43,7 +35,7 @@ struct ProfileView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.blue, Color.cyan],
+                            colors: [Color(red: 34/255, green: 197/255, blue: 94/255), Color(red: 22/255, green: 163/255, blue: 74/255)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -73,7 +65,7 @@ struct ProfileView: View {
                 .padding(.vertical, 8)
                 .background(
                     Capsule()
-                        .fill(Color.white.opacity(0.9))
+                        .fill(Color(.systemGray6))
                 )
             }
 
@@ -94,13 +86,13 @@ struct ProfileView: View {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color(.systemGray5))
                         .frame(height: 10)
 
                     RoundedRectangle(cornerRadius: 10)
                         .fill(
                             LinearGradient(
-                                colors: [Color.blue, Color.cyan],
+                                colors: [Color(red: 34/255, green: 197/255, blue: 94/255), Color(red: 22/255, green: 163/255, blue: 74/255)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -118,7 +110,8 @@ struct ProfileView: View {
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.5))
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
         )
     }
 
@@ -177,7 +170,8 @@ struct ProfileView: View {
                 .padding(30)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.white.opacity(0.5))
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
                 )
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -222,7 +216,8 @@ struct ProfileView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.white.opacity(0.5))
+                    .fill(Color.white)
+                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
             )
         }
         .alert("Reset Progress", isPresented: $showResetAlert) {
@@ -263,7 +258,8 @@ struct StatCard: View {
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.5))
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
         )
     }
 }
@@ -296,7 +292,8 @@ struct AchievementCard: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.5))
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
         )
     }
 }
@@ -338,15 +335,7 @@ struct LanguageChangeView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                LinearGradient(
-                    colors: [Color.blue.opacity(0.15), Color.cyan.opacity(0.1)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
-
-                VStack(spacing: 20) {
+            VStack(spacing: 20) {
                     Text("Change Languages")
                         .font(.system(size: 28, weight: .bold))
                         .padding(.top)
@@ -409,7 +398,7 @@ struct LanguageChangeView: View {
                         .padding()
                     }
                 }
-            }
+            .background(Color.white)
             .navigationBarItems(trailing: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })

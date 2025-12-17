@@ -7,16 +7,35 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("Learn", systemImage: "book.fill")
+                    Label("Home", systemImage: "house.fill")
                 }
                 .tag(0)
 
-            ProfileView()
+            HomeView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.fill")
+                    Label("Explore", systemImage: "safari")
                 }
                 .tag(1)
+
+            HomeView()
+                .tabItem {
+                    Label("Lesson", systemImage: "book.fill")
+                }
+                .tag(2)
+
+            ProfileView()
+                .tabItem {
+                    Label("Progress", systemImage: "chart.bar.fill")
+                }
+                .tag(3)
+
+            ProfileView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
+                .tag(4)
         }
+        .accentColor(Color(red: 34/255, green: 197/255, blue: 94/255))
     }
 }
 
